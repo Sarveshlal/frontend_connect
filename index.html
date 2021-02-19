@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>node js</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+    <script>
+        fetch("http://localhost:3000/api")
+        .then((resp)=> resp.json())
+        .then((data)=>{
+            console.log(data);
+            var k =0;
+            let element = document.getElementById('tblebody');
+            for(var j=0;j<3;j++){
+                var tr = document.createElement('tr');
+                var td1 = document.createElement('td');
+                td1.innerHTML = data[k].name;
+                var td2 = document.createElement('td');
+                td2.innerHTML = data[k].email;
+                k++;
+                tr.append(td1,td2)
+                element.append(tr);
+            }
+        })
+    </script>
+    <div class="row">
+        <div class="col-3">&nbsp;</div>
+        <div class="col-6">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <td>name</td>
+                        <td>email</td>
+                    </tr>
+                </thead>
+                <tbody id="tblebody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
